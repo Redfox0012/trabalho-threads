@@ -1,5 +1,25 @@
-from queue import Queue
+import collections
 import json
+import threading
+import time
+import numpy as np
+
+
+def autosave(nome, delay):
+    while flag_thread:
+        fila_aux = np.array(fila.copy())
+        estados_visitados_aux = np.array(estados_visitados)
+        print(f"salvando\n")
+        with open("puzzle_dados.json", encoding='utf-8') as meu_json:
+            dados = json.load(meu_json)
+            dados['fila'] = fila_aux.tolist()
+            dados['visitados'] = estados_visitados_aux.tolist()
+            with open("em_processo.json", 'w') as f:
+                json.dump(dados, f, indent=2)
+
+
+        time.sleep(5)
+
 
 class BreadthFirstSearch():
     def __init__(self, problema):
@@ -24,6 +44,8 @@ class BreadthFirstSearch():
                 return True
         return False
 
+
+
     def busca(self, inicio, fim):
         '''
         Realiza a busca BFS, armazenando os estados em uma FILA
@@ -33,18 +55,22 @@ class BreadthFirstSearch():
         Return:
             - booleano se a solução foi encontrada, lista dos estados visitados, quantidade de estados visitados
         '''
-        with open("puzzle_dados.json", encoding='utf-8') as meu_json:
-            dados = json.load(meu_json)
-        fila = Queue()
-        fila.put(inicio)
-
-        solucao_encontrada = False
+        global fila
+        global flag_thread
+        global estados_visitados
         estados_visitados = []
-        cont_estados = 0
-        qtd_nos = 0
+        flag_thread = True
+        fila = collections.deque()
+        fila.append(inicio)
+        saver1 = threading.Thread(target=autosave, args=('t1', 0))
+        saver1.start()
+        solucao_encontrada = False
 
-        while not fila.empty():
-            atual = fila.get()
+
+        cont_estados = 0
+        while fila:
+            atual = fila[0]
+            fila.popleft()
             estados_visitados.append(atual)
 
             if self.problema.verifica_estados(atual, fim):
@@ -55,18 +81,8 @@ class BreadthFirstSearch():
                 cont_estados += 1
                 print(f"Visitando #{cont_estados}")
                 novos_estados = self.problema.expande_estados(atual)
-                if qtd_nos <= 362880:
-                    for i in novos_estados:
-                        if not self._verifica_visitado(i, estados_visitados):
-                            fila.put(i)
-                            qtd_nos += 1
-                            print(f'nó [{qtd_nos}]')
-                            print(i)
-                            if qtd_nos % 500 == 0:
-                                li = list(fila.queue)
-                                dados['fila']
-                                print('dados')
-                                print(dados['fila'])
-
-
+                for i in novos_estados:
+                    if not self._verifica_visitado(i, estados_visitados):
+                        fila.append(i)
+        flag_thread = False
         return solucao_encontrada, estados_visitados, cont_estados
