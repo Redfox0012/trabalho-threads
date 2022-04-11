@@ -18,7 +18,7 @@ def autosave(nome, delay):
                 json.dump(dados, f, indent=2)
 
 
-        time.sleep(5)
+        time.sleep(60)
 
 
 class BreadthFirstSearch():

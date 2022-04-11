@@ -1,4 +1,5 @@
 # Pacote auxiliar para o cálculo do tempo
+import sys
 from time import time
 import BFS
 import puzzle
@@ -64,34 +65,6 @@ else:
     print("Solution not found!!!")
 
 print(f'tempo: {bfs_time}')
+sys.exit()
 
-
-
-
-
-
-
-
-
-# 362.880 combinations
-
-# arquivo = input('Entre com o nome do aquivo: ')
-# Criando Matriz inicial e matriz alvo
-
-
-
-'''
-start = np.matrix([
-    [1, 0, 2],
-    [8, 4, 3],
-    [7, 6, 5]
-    ]
-)
-'''
-
-
-
-
-
-
-
+# 362.880
