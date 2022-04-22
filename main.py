@@ -28,6 +28,7 @@ op = input('Entre com a opção: ')
 # Criando objeto do problema
 problema = puzzle.SlidingPuzzle(3)
 bfs = BFS.BreadthFirstSearch(problema)
+# Nova Busca
 if op == '1':
     with open("puzzle_dados.json", encoding='utf-8') as meu_json:
         dados = json.load(meu_json)
@@ -35,7 +36,7 @@ if op == '1':
     start = np.matrix(
         dados['start']
     )
-
+# Continua Busca
 if op == '2':
     with open("em_processo.json", encoding='utf-8') as meu_json:
         dados = json.load(meu_json)
@@ -52,10 +53,16 @@ print(f"Start: \n{start}")
 print("*" * 15)
 print(f"objetivo: \n{target}")
 print("*" * 15)
-#
-ini = time() # Tempo inicial
 
-bfs_solucao, bfs_estados_visitados, bfs_num_visitados = bfs.busca(start, target) # chamando busca
+
+ini = time() # Tempo inicial
+# Nova Busca
+if op == "1":
+    bfs_solucao, bfs_estados_visitados, bfs_num_visitados = bfs.nova_busca(start, target) # chamando busca
+
+# Continua Busca
+if op == "2":
+    bfs_solucao, bfs_estados_visitados, bfs_num_visitados = bfs.busca(dados)  # chamando busca
 
 bfs_time = time()-ini # Tempo total
 
@@ -66,5 +73,3 @@ else:
 
 print(f'tempo: {bfs_time}')
 sys.exit()
-
-# 362.880

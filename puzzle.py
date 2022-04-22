@@ -34,13 +34,13 @@ class SlidingPuzzle():
         Return:
             - booleano dizendo se o estado atual é ou não o objetivo
         '''
+        atual = np.array(atual)
         flag = True
         for i in range(self.num_blocos):
             for j in range(self.num_blocos):
                 if atual[i, j] != objetivo[i, j]:
                     flag = False
                     break
-
         return flag
 
     def expande_estados(self, atual):

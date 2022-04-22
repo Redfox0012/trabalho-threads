@@ -4,21 +4,19 @@ import threading
 import time
 import numpy as np
 
-
+# Thread
 def autosave(nome, delay):
     while flag_thread:
         fila_aux = np.array(fila.copy())
         estados_visitados_aux = np.array(estados_visitados)
-        print(f"salvando\n")
+        print(f"{nome}\n")
         with open("puzzle_dados.json", encoding='utf-8') as meu_json:
             dados = json.load(meu_json)
             dados['fila'] = fila_aux.tolist()
             dados['visitados'] = estados_visitados_aux.tolist()
             with open("em_processo.json", 'w') as f:
                 json.dump(dados, f, indent=2)
-
-
-        time.sleep(60)
+        time.sleep(delay)
 
 
 class BreadthFirstSearch():
@@ -46,7 +44,7 @@ class BreadthFirstSearch():
 
 
 
-    def busca(self, inicio, fim):
+    def nova_busca(self, inicio, fim):
         '''
         Realiza a busca BFS, armazenando os estados em uma FILA
         Args:
@@ -62,7 +60,7 @@ class BreadthFirstSearch():
         flag_thread = True
         fila = collections.deque()
         fila.append(inicio)
-        saver1 = threading.Thread(target=autosave, args=('t1', 0))
+        saver1 = threading.Thread(target=autosave, args=('Salvando', 5))
         saver1.start()
         solucao_encontrada = False
 
@@ -70,6 +68,50 @@ class BreadthFirstSearch():
         cont_estados = 0
         while fila:
             atual = fila[0]
+            fila.popleft()
+            estados_visitados.append(atual)
+
+            if self.problema.verifica_estados(atual, fim):
+                solucao_encontrada = True
+                break
+
+            else:
+                cont_estados += 1
+                print(f"Visitando #{cont_estados}")
+                novos_estados = self.problema.expande_estados(atual)
+                for i in novos_estados:
+                    if not self._verifica_visitado(i, estados_visitados):
+                        fila.append(i)
+        flag_thread = False
+        return solucao_encontrada, estados_visitados, cont_estados
+
+    def busca(self, dados):
+        '''
+        Realiza a busca BFS, armazenando os estados em uma FILA
+        Args:
+            - inicio: estado inicial do problema
+            - fim: estado objetivo
+        Return:
+            - booleano se a solução foi encontrada, lista dos estados visitados, quantidade de estados visitados
+        '''
+        global fila
+        global flag_thread
+        global estados_visitados
+        estados_visitados = dados['visitados']
+        flag_thread = True
+        fila = dados['fila']
+        fila = collections.deque(fila)
+        saver1 = threading.Thread(target=autosave, args=('Salvando', 5))
+        saver1.start()
+        solucao_encontrada = False
+        fim = np.matrix(
+            dados['objetivo']
+        )
+
+
+        cont_estados = 0
+        while fila:
+            atual = np.array(fila[0])
             fila.popleft()
             estados_visitados.append(atual)
 
