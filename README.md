@@ -15,14 +15,16 @@ Utilizamos o algoritmos de BFS para resolver o puzzle 3x3 abaixo. <br>
 <img style="border-radius: 5%;" src="assets/img/sliding_puzzle.gif" width="250px;" /><br>
 
 Utilizamos a Thread para salvar todos os processos da fila e os nós visitados. <br>
+
 **[Referencia Thread com Python](https://www.datacamp.com/community/tutorials/threading-in-python?utm_source=adwords_ppc&utm_medium=cpc&utm_campaignid=1455363063&utm_adgroupid=65083631748&utm_device=c&utm_keyword=&utm_matchtype=&utm_network=g&utm_adpostion=&utm_creative=278443377086&utm_targetid=aud-392016246653:dsa-429603003980&utm_loc_interest_ms=&utm_loc_physical_ms=1031943)**.
+
 ---
 
 ## 💻 Tecnologias
 
 As seguintes tecnologias foram utilizadas na construção do projeto:
 
- - **[Python](https://www.python.org/)**
+- **[Python](https://www.python.org/)**
  
 ---
 
@@ -32,13 +34,13 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
     <a href="https://github.com/Redfox0012">
     <div style="display: flex; flex-direction: column; margin-right: 50px">
         <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/48630726?v=4" width="120px;" alt="120px"/>
-        <h4 style="margin: 5px auto">Gabriel</h4>
+        <h4 style="margin: auto">Gabriel</h4>
     </div>
     </a>
     <a href="https://github.com/ItaloRez">
     <div style="display: flex; flex-direction: column; margin-right: 50px">
         <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/36886923?v=4" width="120px;" alt="120px"/>
-        <h4 style="margin: 5px auto">Italo</h4>
+        <h4 style="margin: auto">Italo</h4>
     </div>
     </a>
 </div>
