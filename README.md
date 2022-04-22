@@ -30,18 +30,6 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 
 ## 👥 Autores
 
-<div style="display: flex;">
-    <a href="https://github.com/Redfox0012">
-    <div style="display: flex; flex-direction: column; margin-right: 50px">
-        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/48630726?v=4" width="120px;" alt="120px"/>
-        <h4 style="margin: auto">Gabriel</h4>
-    </div>
-    </a>
-    <a href="https://github.com/ItaloRez">
-    <div style="display: flex; flex-direction: column; margin-right: 50px">
-        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/36886923?v=4" width="120px;" alt="120px"/>
-        <h4 style="margin: auto">Italo</h4>
-    </div>
-    </a>
-</div>
-<br>
+- **[Gabriel](https://github.com/Redfox0012)**
+- **[Italo](https://github.com/ItaloRez)**
+
